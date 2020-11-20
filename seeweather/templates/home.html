@@ -10,10 +10,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>jhbihrewkjwr</h1>
-    <br/>
-    {{ api.0 }}<br/><br/><br/>
-    Quality: {{ api.0.AQI}}<br/>
+
+    {% if zipcode %}
+
+    {{ zipcode }}
+
+    {% endif %}
+
+    {% if api %}
+        {% if api == "ERRORRR..." %}
+            there is an error occurred
+
+        {% else %}
+        <br/><br/>
+            <div class="jumbotron jumbotron-fluid {{category_color}}">
+                <div class="container">
+                <h1 class="display-4">{{ api.0.Category.Name}}</h1>
+                <p class="lead">DATE: {{ api.0.DateForecast}}, Latitude: {{ api.0.Latitude}}, Longitude: {{ api.0.Longitude}}</p>
+                <p class="lead">{{ api.0.ReportingArea}}'s Air Quality is {{ api.0.AQI}}</p>
+                </div>
+            </div>
+
+        {% endif %}
+    {% endif %}
+
 </body>
 </html>
 
